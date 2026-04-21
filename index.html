@@ -70,7 +70,14 @@ body {
 .card-scene {
   width:100%; height:100%; perspective:900px;
 }
-.card-inner {
+.card-stack-wrap { ... }  /* new wrapper for the whole stack */
+.card-layer { ... }       /* base style for each layer behind */
+.layer-1 { transform: rotate(-6deg) translateY(6px); }  /* left card */
+.layer-2 { transform: rotate(-3deg) translateY(3px); }  /* middle card */
+.layer-3 { transform: rotate(5deg) translateY(4px); }   /* right card */
+.card-wrap { position:absolute; inset:0; z-index:3; }   /* main card on top */
+.card-inner 
+  {
   width:100%; height:100%; position:relative;
   transform-style:preserve-3d;
   transition:transform 0.75s cubic-bezier(0.4,0.2,0.2,1);
@@ -154,7 +161,11 @@ body {
     <img src="Text.png" alt="BufDay" style="width:220px;"/>
   </div>
 
-  <div class="card-wrap">
+  <div class="card-stack-wrap">
+    <div class="card-layer layer-3"></div>
+    <div class="card-layer layer-2"></div>
+    <div class="card-layer layer-1"></div>
+    <div class="card-wrap">
     <div class="holo-border">
       <div class="card-scene">
         <div class="card-inner" id="cardInner">
