@@ -38,7 +38,7 @@ body {
 .container {
   position:relative; z-index:10;
   display:flex; flex-direction:column; align-items:center;
-  gap:20px; padding:20px; width:100%; max-width:380px; min-height:calc(100vh-40px); justify-content:center;
+  gap:40px; padding:40px 20px; width:100%; max-width:380px; min-height:calc(100vh-40px); justify-content:center;
 }
 .header { text-align:center; }
 .subtitle { font-size:12px; letter-spacing:3px; color:#ffd4d4; text-transform:uppercase; margin-bottom:4px; }
@@ -78,6 +78,7 @@ body {
   /* The shadow here is softer and bigger to cover the entire stack */
   filter: drop-shadow(0 15px 40px rgba(0,0,0,0.4));
   margin: 0 auto; /* Centers the stack horizontally */
+  margin-bottom:20px;
 }
 .stack-layer {
   position: absolute;
@@ -145,7 +146,7 @@ body {
   font-size:12px; letter-spacing:2px; color:rgba(255,255,255,0.6);
   text-transform:uppercase;
 }
-.buttons { display:flex; flex-direction:column; gap:12px; width:240px; }
+.buttons { display:flex; flex-direction:column; gap:16px; width:240px; margin-top:10px; }
 .btn {
   width:100%; padding:14px; border-radius:40px; border:none;
   font-size:14px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
