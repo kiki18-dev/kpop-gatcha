@@ -70,14 +70,49 @@ body {
 .card-scene {
   width:100%; height:100%; perspective:900px;
 }
-.card-stack-wrap { ... }  /* new wrapper for the whole stack */
-.card-layer { ... }       /* base style for each layer behind */
-.layer-1 { transform: rotate(-6deg) translateY(6px); }  /* left card */
-.layer-2 { transform: rotate(-3deg) translateY(3px); }  /* middle card */
-.layer-3 { transform: rotate(5deg) translateY(4px); }   /* right card */
-.card-wrap { position:absolute; inset:0; z-index:3; }   /* main card on top */
+.stack-wrapper {
+  position: relative;
+  width: 70vw; 
+  max-width: 260px;
+  aspect-ratio: 5.5 / 8.5; /* Matches standard photocard ratio */
+  /* The shadow here is softer and bigger to cover the entire stack */
+  filter: drop-shadow(0 15px 40px rgba(0,0,0,0.4));
+  margin: 0 auto; /* Centers the stack horizontally */
+}
+.stack-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px; /* Matches your holo border */
+  border: 1px solid rgba(255,255,255,0.15); /* Adds a faint edge */
+  background-size: cover;
+  background-position: center;
+}
+.layer-bottom {
+  /* Rotates counter-clockwise and offsets slightly to the left */
+  transform: rotate(-7deg) translate(-10px, -5px);
+  z-index: 1; /* Lowest stacking order */
+  /* Reusing your gradient or an image—you can pick */
+  background: linear-gradient(135deg, #fce68a, #86efac, #fca5a5); 
+  opacity: 0.6; /* Softens the bottom layer */
+}
+.layer-middle {
+  /* Rotates counter-clockwise (less than bottom) and offsets slightly */
+  transform: rotate(-3deg) translate(-5px, -2px);
+  z-index: 2; /* Middle stacking order */
+  /* A slightly different gradient for realism */
+  background: linear-gradient(135deg, #a78bfa, #67e8f9); 
+  opacity: 0.8;
+}
+.card-wrap {
+  position: relative;
+  width: 100%; /* Spans the full parent width */
+  height: 100%;
+  z-index: 10; /* Highest stacking order, sits above background layers */
+  /* Remove the shadow from here because it's now controlled by stack-wrapper */
+  box-shadow: none; 
+}
 .card-inner 
-  {
+{
   width:100%; height:100%; position:relative;
   transform-style:preserve-3d;
   transition:transform 0.75s cubic-bezier(0.4,0.2,0.2,1);
@@ -161,10 +196,9 @@ body {
     <img src="Text.png" alt="BufDay" style="width:220px;"/>
   </div>
 
-  <div class="card-stack-wrap">
-    <div class="card-layer layer-3"></div>
-    <div class="card-layer layer-2"></div>
-    <div class="card-layer layer-1"></div>
+  <div class="stack-wrapper">
+    <div class="stack-layer layer-bottom"></div>
+    <div class="stack-layer layer-middle"></div>
     <div class="card-wrap">
     <div class="holo-border">
       <div class="card-scene">
